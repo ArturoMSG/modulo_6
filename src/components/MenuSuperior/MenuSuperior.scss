@@ -1,0 +1,58 @@
+$color-gris-muy-claro:#d1d1d1;
+$color-gris-claro: #8f8b8b;
+$color-gris-oscuro:#434242;
+$color-rojo: #9d1414;
+$color-azul-claro: #1d5a9a;
+$color-azul-pastel:#78b0d8;
+$color-azul-fuerte:#082c50;
+
+
+
+
+
+@mixin menusuperior-link($hover: true) {
+    color: $color-azul-fuerte;
+    text-decoration: none;
+    letter-spacing: 2px;
+
+    @if $hover {
+        &:hover {
+            border-bottom: solid 2px $color-azul-fuerte;
+        }
+    }
+}
+
+.menusuperior {
+    background-color: $color-gris-muy-claro;
+    color:$color-rojo;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+
+    &__logo {
+        @include menusuperior-link(false);
+    }
+
+    &__ul {
+        display: flex;
+        list-style: none;
+        column-gap: 20px;
+        flex-wrap: wrap;
+    }
+   
+       
+       
+
+    
+
+    &__item-link {
+        @include menusuperior-link;
+        color: $color-gris-claro;
+
+        &--is-active {
+            border-bottom: solid 2px $color-gris-claro;
+            color: $color-azul-claro;
+        }
+    }
+}
