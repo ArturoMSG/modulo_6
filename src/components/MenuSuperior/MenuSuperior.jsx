@@ -74,7 +74,6 @@ const MenuSuperior = () => {
                   >Registro
                   </NavLink>
                 </li>
-
               </>
               )}
 
