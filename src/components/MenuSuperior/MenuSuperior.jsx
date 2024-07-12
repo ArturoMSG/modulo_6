@@ -1,17 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAutenticacionContext } from '../../hooks/useUsuario'
 import './MenuSuperior.scss'
+import logo from '../../assets/react.svg'
 
 const MenuSuperior = () => {
-  const isAuth = (false)
-  const logout = (true)
+  const { Autenticado, logout } = useAutenticacionContext()
 
   const linkIsActive = (isActive) => isActive ? 'menusuperior__item-link--is-active' : 'menusuperior__item-link'
 
   return (
     <>
       <nav className='menusuperior'>
-        <NavLink to='/' className='menusuperior__logo'>LOGO </NavLink>
+        <NavLink to='/' className='menusuperior__logo'><img
+          src={logo}
+          alt='LOGO'
+          width={30}
+          height={40}
+                                                       />
+        </NavLink>
         <ul className='menusuperior__ul'>
           <li>
             <NavLink
@@ -21,15 +28,7 @@ const MenuSuperior = () => {
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to='/dashboard'
-              className={({ isActive }) => linkIsActive(isActive)}
-            >Dashboard
-            </NavLink>
-          </li>
-
-          {isAuth
+          {Autenticado
             ? (
               <>
                 <li>
@@ -67,8 +66,17 @@ const MenuSuperior = () => {
                   >Registro
                   </NavLink>
                 </li>
+
               </>
               )}
+
+          <li>
+            <NavLink
+              to='/Carrito'
+              className={({ isActive }) => linkIsActive(isActive)}
+            >Carrito
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </>

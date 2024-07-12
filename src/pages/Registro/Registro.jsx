@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { servicioRegistroUsuario } from '../../services/UsuariosServices'
 import '../../styles/form.css'
 import logo from '../../assets/react.svg'
+import './Registro.css'
 
 const Registro = () => {
   const navigate = useNavigate()
@@ -13,9 +14,9 @@ const Registro = () => {
     formState: { errors }
   } = useForm()
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (datos) => {
     try {
-      const { status } = await servicioRegistroUsuario(data)
+      const { status } = await servicioRegistroUsuario(datos)
       if (status === 201) {
         navigate('/login')
       }
@@ -27,7 +28,7 @@ const Registro = () => {
     <main className='form-signin w-100 m-auto'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <img className='mb-4' src={logo} alt='' width='72' height='57' />
-        <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
+        <h1 className='h3 mb-3 fw-normal'>Registrese por favor</h1>
 
         <div className='form-floating'>
           <input
@@ -38,8 +39,8 @@ const Registro = () => {
             placeholder='John'
             {...register('first_name', { required: true })}
           />
-          {errors.first_name && <span>This field is required</span>}
-          <label htmlFor='first_name'>First Name</label>
+          {errors.first_name && <span className='registro__span'>Este campo es necesario</span>}
+          <label htmlFor='first_name'>Nombre</label>
         </div>
 
         <div className='form-floating'>
@@ -51,8 +52,8 @@ const Registro = () => {
             placeholder='Doe'
             {...register('last_name', { required: true })}
           />
-          {errors.last_name && <span>This field is required</span>}
-          <label htmlFor='last_name'>Last Name</label>
+          {errors.last_name && <span className='registro__span'>Este campo es necesario</span>}
+          <label htmlFor='last_name'>Apellido</label>
         </div>
 
         <div className='form-floating'>
@@ -62,12 +63,12 @@ const Registro = () => {
             name='gender'
             {...register('gender', { required: true })}
           >
-            <option value=''>Choose...</option>
-            <option value='M'>Male</option>
-            <option value='F'>Female</option>
+            <option value=''>Elegir...</option>
+            <option value='M'>Hombre</option>
+            <option value='F'>Mujer</option>
           </select>
-          {errors.gender && <span>This field is required</span>}
-          <label htmlFor='gender'>Gender</label>
+          {errors.gender && <span className='registro__span'>Este campo es necesario</span>}
+          <label htmlFor='gender'>Genero</label>
         </div>
 
         <div className='form-floating'>
@@ -79,8 +80,8 @@ const Registro = () => {
             placeholder='name@example.com'
             {...register('email', { required: true })}
           />
-          {errors.email && <span>This field is required</span>}
-          <label htmlFor='email'>Email address</label>
+          {errors.email && <span className='registro__span'>Este campo es necesario</span>}
+          <label htmlFor='email'>Correo electronico</label>
         </div>
 
         <div className='form-floating'>
@@ -92,12 +93,12 @@ const Registro = () => {
             placeholder='Password'
             {...register('password', { required: true })}
           />
-          {errors.password && <span>This field is required</span>}
+          {errors.password && <span className='registro__span'>Este campo es necesario</span>}
           <label htmlFor='password'>Password</label>
         </div>
 
-        <button className='w-100 btn btn-lg btn-primary' type='submit'>Sign up</button>
-        <p className='mt-5 mb-3 text-muted'>© 2017–2024</p>
+        <button className='w-100 btn btn-lg btn-primary' type='submit'>Enviar</button>
+        <p className='mt-5 mb-3 text-muted' />
       </form>
     </main>
   )

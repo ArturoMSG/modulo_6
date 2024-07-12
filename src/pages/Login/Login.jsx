@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { servicioLoginUsuario } from '../../services/UsuariosServices'
 import { useAutenticacionContext } from '../../hooks/useUsuario'
-import logo from '../../assets/vite.svg'
+import logo from '../../assets/react.svg'
 import '../../styles/form.css'
 
 const Login = () => {
@@ -15,20 +15,22 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
-  const onSubmit = async (datos) => {
+
+  const onSubmit = async (data) => {
     try {
-      const response = await servicioLoginUsuario(datos)
+      const response = await servicioLoginUsuario(data)
       if (response.status === 200) {
         // Guardamos el token en el localStorage del navegador
         // Este dato permance aún si el navegador se cierra y vuelve a abrir.
         // localStorage.setItem('token', response.datos.token)
-        login(response.datos.token)
-        navigate('/listaproductos')
+        login(response.data.token)
+        navigate('/micuenta')
       }
     } catch (error) {
       console.error(error)
     }
   }
+
   return (
     <main className='form-signin w-100 m-auto'>
       <form onSubmit={handleSubmit(onSubmit)}>

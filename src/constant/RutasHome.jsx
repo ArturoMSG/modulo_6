@@ -1,6 +1,7 @@
 import { useRoutes, Navigate } from 'react-router-dom'
 import { useAutenticacionContext } from '../hooks/useUsuario'
 
+import Carrito from '../pages/Carrito'
 import Error from '../pages/Error'
 import ListaProductos from '../pages/ListaProductos'
 import Login from '../pages/Login'
@@ -11,6 +12,11 @@ const RutasHome = () => {
   const autenticado = useAutenticacionContext()
 
   const rutas = useRoutes([
+
+    {
+      path: '/carrito',
+      element: (autenticado ? <Carrito /> : <Navigate to='/' />)
+    },
 
     {
       path: '*',

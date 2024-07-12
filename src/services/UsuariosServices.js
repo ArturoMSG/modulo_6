@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const URL_API = 'https://ecomerce-master.herokuapp.com/api/v1'
+const URL_API = 'https://ecommerce-json-jwt.onrender.com'
 
-const servicioRegistroUsuario = (datos) => axios.post(`${URL_API}/signup`, datos)
-const servicioLoginUsuario = (datos) => axios.post(`${URL_API}/login`, datos)
-const servicioMiUsuario = (jwt) => axios.post(`${URL_API}/login`,
+const servicioRegistroUsuario = (data) => axios.post(`${URL_API}/signup`, data)
+const servicioLoginUsuario = (data) => axios.post(`${URL_API}/login`, data)
+const servicioMiUsuario = (jwt) => axios.post(`${URL_API}/users/me`,
   {
     headers: {
-      Authorization: `JWT ${jwt}`
+      Authorization: `Bearer ${jwt}`
     }
   })
 

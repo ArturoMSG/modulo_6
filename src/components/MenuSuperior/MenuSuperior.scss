@@ -3,7 +3,7 @@ $color-gris-claro: #8f8b8b;
 $color-gris-oscuro:#434242;
 $color-rojo: #9d1414;
 $color-azul-claro: #1d5a9a;
-$color-azul-pastel:#78b0d8;
+$color-azul-pastel:#cce1ef;
 $color-azul-fuerte:#082c50;
 
 
@@ -23,7 +23,7 @@ $color-azul-fuerte:#082c50;
 }
 
 .menusuperior {
-    background-color: $color-gris-muy-claro;
+    background-color: $color-azul-pastel;
     color:$color-rojo;
     display: flex;
     justify-content: space-between;

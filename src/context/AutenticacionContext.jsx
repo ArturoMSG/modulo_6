@@ -14,7 +14,7 @@ const AutenticacionProvider = ({ children }) => {
     setUsuarioPayload(payload)
   }
 
-  const logout = (token) => {
+  const logout = () => {
     localStorage.removeItem('token')
     setAutenticado(false)
     setUsuarioPayload(null)
@@ -30,7 +30,7 @@ const AutenticacionProvider = ({ children }) => {
     }
   }, [])
 
-  const datos = {
+  const data = {
     // Las cosas que quiero hacer global
     autenticado,
     usuarioPayload,
@@ -39,7 +39,7 @@ const AutenticacionProvider = ({ children }) => {
   }
 
   return (
-    <AutenticacionContext.Provider value={datos}>
+    <AutenticacionContext.Provider value={data}>
       {children}
     </AutenticacionContext.Provider>
   )
