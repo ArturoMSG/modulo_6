@@ -9,7 +9,7 @@ import MiCuenta from '../pages/MiCuenta'
 import Registro from '../pages/Registro'
 
 const RutasHome = () => {
-  const autenticado = useAutenticacionContext()
+  const { autenticado } = useAutenticacionContext()
 
   const rutas = useRoutes([
 

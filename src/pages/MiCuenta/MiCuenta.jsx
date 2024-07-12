@@ -4,7 +4,7 @@ import { servicioMiUsuario } from '../../services/UsuariosServices'
 
 const MiCuenta = () => {
   const { usuarioPayload } = useAutenticacionContext()
-  const [usuarioDatos, setUsuarioDatos] = useState({})
+  const [usuarioDatos, setusuarioDatos] = useState({})
   const token = localStorage.getItem('token')
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const MiCuenta = () => {
       try {
         const response = await servicioMiUsuario(token)
         if (response.status === 200) {
-          setUsuarioDatos(response.data)
+          setusuarioDatos(response.data)
         }
       } catch (error) {
         console.error(error)
@@ -32,7 +32,9 @@ const MiCuenta = () => {
       {usuarioPayload?.role === 'ADMIN' && <h4>Bienvenido Admin</h4>}
 
       {usuarioPayload?.role === 'CUSTOMER' && <h4>Bienvenido Customer</h4>}
+
       <h1>Dashboard</h1>
+
       {usuarioDatos?.first_name && <h4>Nombre: {usuarioDatos.first_name} </h4>}
       {usuarioDatos?.last_name && <h4>Apellido: {usuarioDatos.last_name} </h4>}
       {usuarioDatos?.gender && <p>Genero: {usuarioDatos.gender} </p>}

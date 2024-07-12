@@ -14,9 +14,9 @@ const Registro = () => {
     formState: { errors }
   } = useForm()
 
-  const onSubmit = async (datos) => {
+  const onSubmit = async (data) => {
     try {
-      const { status } = await servicioRegistroUsuario(datos)
+      const { status } = await servicioRegistroUsuario(data)
       if (status === 201) {
         navigate('/login')
       }
