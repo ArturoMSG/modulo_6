@@ -5,7 +5,7 @@ import './MenuSuperior.scss'
 import logo from '../../assets/react.svg'
 
 const MenuSuperior = () => {
-  const { Autenticado, logout } = useAutenticacionContext()
+  const { autenticado, logout } = useAutenticacionContext()
 
   const linkIsActive = (isActive) => isActive ? 'menusuperior__item-link--is-active' : 'menusuperior__item-link'
 
@@ -28,7 +28,7 @@ const MenuSuperior = () => {
             </NavLink>
           </li>
 
-          {Autenticado
+          {autenticado
             ? (
               <>
                 <li>
@@ -36,6 +36,14 @@ const MenuSuperior = () => {
                     to='/micuenta'
                     className={({ isActive }) => linkIsActive(isActive)}
                   >Mi Cuenta
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to='/Carrito'
+                    className={({ isActive }) => linkIsActive(isActive)}
+                  >Carrito
                   </NavLink>
                 </li>
 
@@ -70,13 +78,6 @@ const MenuSuperior = () => {
               </>
               )}
 
-          <li>
-            <NavLink
-              to='/Carrito'
-              className={({ isActive }) => linkIsActive(isActive)}
-            >Carrito
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </>
