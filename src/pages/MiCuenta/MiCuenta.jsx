@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 // import { useAutenticacionContext } from '../../hooks/useUsuario'
 import { servicioMiUsuario } from '../../services/UsuariosServices'
+import { useAutenticacionContext } from '../../hooks/useUsuario'
 
 const MiCuenta = () => {
   // const { usuarioPayload } = useAutenticacionContext()
   const [usuarioDatos, setusuarioDatos] = useState({})
   const token = localStorage.getItem('token')
+  const { setTipoUsuario } = useAutenticacionContext()
 
   useEffect(() => {
     const fetchUsuarioDatos = async () => {
@@ -40,6 +42,7 @@ const MiCuenta = () => {
       {usuarioDatos?.gender && <p>Genero: {usuarioDatos.gender} </p>}
       {usuarioDatos?.email && <p>Email: {usuarioDatos.email} </p>}
       {usuarioDatos?.role && <p>Tipo de Cuenta: {usuarioDatos.role} </p>}
+      {setTipoUsuario(usuarioDatos.role)}
     </>
   )
 }

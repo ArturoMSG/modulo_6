@@ -6,6 +6,8 @@ const AutenticacionContext = createContext()
 const AutenticacionProvider = ({ children }) => {
   const [autenticado, setAutenticado] = useState(false) // ¿Estoy autenticado?
   const [usuarioPayload, setUsuarioPayload] = useState(null) // JWT payload decodificado
+  const [idProducto, setIdProducto] = useState(null)
+  const [tipoUsuario, setTipoUsuario] = useState()
 
   const login = (token) => {
     localStorage.setItem('token', token)
@@ -18,6 +20,7 @@ const AutenticacionProvider = ({ children }) => {
     localStorage.removeItem('token')
     setAutenticado(false)
     setUsuarioPayload(null)
+    setTipoUsuario(null)
   }
 
   // verificar si hay un token en el localStorage y si es válido cargarlo para evitar que el usuario tenga que loguearse cada vez que recargue/entre a la página
@@ -35,7 +38,11 @@ const AutenticacionProvider = ({ children }) => {
     autenticado,
     usuarioPayload,
     login,
-    logout
+    logout,
+    idProducto,
+    setIdProducto,
+    tipoUsuario,
+    setTipoUsuario
   }
 
   return (

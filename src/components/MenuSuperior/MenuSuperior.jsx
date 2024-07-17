@@ -5,21 +5,34 @@ import './MenuSuperior.scss'
 import logo from '../../assets/react.svg'
 
 const MenuSuperior = () => {
-  const { autenticado, logout } = useAutenticacionContext()
+  const { autenticado, logout, tipoUsuario } = useAutenticacionContext()
 
   const linkIsActive = (isActive) => isActive ? 'menusuperior__item-link--is-active' : 'menusuperior__item-link'
 
   return (
     <>
       <nav className='menusuperior'>
-        <NavLink to='/' className='menusuperior__logo'><img
-          src={logo}
-          alt='LOGO'
-          width={30}
-          height={40}
-                                                       />
+        <NavLink to='/' className='menusuperior__logo'>
+          <img
+            src={logo}
+            alt='LOGO'
+            width={30}
+            height={40}
+          />
         </NavLink>
+        {tipoUsuario === 'ADMIN'
+          ? (
+            <li className='menusuperior'>
+              <NavLink
+                to='/agregararticulo'
+                className={({ isActive }) => linkIsActive(isActive)}
+              >Agregar Productos
+              </NavLink>
+            </li>
+            )
+          : ('')}
         <ul className='menusuperior__ul'>
+
           <li>
             <NavLink
               to='/'
