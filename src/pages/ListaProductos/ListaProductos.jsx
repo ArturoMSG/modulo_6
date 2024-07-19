@@ -4,7 +4,7 @@ import icono from '../../assets/icono.png'
 import { servicioListaProductos } from '../../services/ProductoServices'
 
 const ListaProductos = () => {
-  const [itemsData, setitemsData] = useState([])
+  const [articulos, setArticulos] = useState([])
 
   const { autenticado, setIdProducto } = useAutenticacionContext()
 
@@ -13,7 +13,7 @@ const ListaProductos = () => {
       try {
         const response = await servicioListaProductos()
         if (response.status === 200) {
-          setitemsData(response.data)
+          setArticulos(response.data)
         }
       } catch (error) {
         console.error(error)
@@ -24,21 +24,22 @@ const ListaProductos = () => {
 
   return (
     <>
+
       <h1>lista de productos</h1>
       {autenticado ? ('') : (<h3> para poder agregar productos al carrito debera iniciar secion</h3>)}
       <div className='d-flex flex-row flex-wrap justify-content-center'>
-        {/* Si itemsData no esta vacio, recorro el arreglo con Map y creo un Card de Bootstrap para cada elemento */}
-        {itemsData && itemsData.map((product) => (
+        {/* Si articulos no esta vacio, recorro el arreglo con Map y creo un Card de Bootstrap para cada elemento */}
+        {console.log('articulos-mik', articulos[0])}
 
-          <div className='card' style={{ width: '18rem' }} key={product.id} onClick={() => setIdProducto(product)}>
-            <img className='card-img-top' style={{ maxHeight: '300px' }} src={product.image ? product.image : icono} alt={product.product_name} />
+        {articulos && articulos.map((producto) => (
+          <div className='card' style={{ width: '18rem' }} key={producto.id} onClick={() => setIdProducto(producto)}>
+            <img className='card-img-top' style={{ maxHeight: '300px' }} src={producto.image ? producto.image : icono} alt={producto.product_name} />
             <div className='card-body'>
-              <h5 className='card-title'>{product.product_name}</h5>
-              {autenticado ? (<p className='card-text'>{product.description}</p>) : null}
-              {autenticado ? (<p className='card-text'>${product.price}</p>) : null}
+              <h5 className='card-title'>{producto.product_name}</h5>
+              {autenticado ? (<p className='card-text'>{producto.description}</p>) : null}
+              {autenticado ? (<p className='card-text'>${producto.price}</p>) : null}
               {autenticado ? (<a href='#' className='btn btn-primary'>Agregar al carrito</a>) : ('')}
-              <a href={`/articulo/${product.id}`} className='btn btn-secundary'>Mostrar producto</a>
-
+              <a href={`/articulo/${producto.id}`} className='btn btn-secundary'>Mostrar producto</a>
             </div>
           </div>
         ))}

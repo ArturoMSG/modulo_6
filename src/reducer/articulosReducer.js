@@ -2,8 +2,8 @@ import types from './types'
 
 const articulosIniciales = {
   articulos: [
-    { id: 1, title: 'peoducto 1' },
-    { id: 2, title: 'peoducto 2' }
+    { id: 1, title: 'producto 1' },
+    { id: 2, title: 'producto 2' }
   ],
 
   carrito: [
